@@ -1,5 +1,8 @@
 <script lang="ts">
-	import Card from '$lib/components/Card.svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+	const { content } = data;
 </script>
 
 <svelte:head>
@@ -7,259 +10,255 @@
 	<meta name="description" content="Learn about mutual aid in the Bay Area" />
 </svelte:head>
 
-<div class="about-container">
+<div class="about-page">
 	<header class="page-header">
-		<h1>MUTUAL AID</h1>
-		<p class="subtitle">SOLIDARITY NOT CHARITY</p>
+		<div class="header-content">
+			<h1>{content.header.title}</h1>
+			<p class="subtitle">{content.header.subtitle}</p>
+		</div>
 	</header>
 
 	<div class="content">
 		<section class="organizations">
-			<h2>BAY AREA ORGANIZATIONS</h2>
-			<div class="org-grid">
-				<Card bordered>
-					<h3>Oakland Community Organizations</h3>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-						incididunt ut labore et dolore magna aliqua.
-					</p>
-					<ul>
-						<li>Lorem ipsum dolor sit amet</li>
-						<li>Consectetur adipiscing elit</li>
-						<li>Sed do eiusmod tempor</li>
-					</ul>
-				</Card>
-
-				<Card bordered>
-					<h3>Berkeley Mutual Aid Networks</h3>
-					<p>
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-						commodo consequat.
-					</p>
-					<ul>
-						<li>Duis aute irure dolor</li>
-						<li>In reprehenderit in voluptate</li>
-						<li>Velit esse cillum dolore</li>
-					</ul>
-				</Card>
-
-				<Card bordered>
-					<h3>East Bay Food Programs</h3>
-					<p>
-						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-						mollit anim id est laborum.
-					</p>
-					<ul>
-						<li>Lorem ipsum dolor sit</li>
-						<li>Amet consectetur adipiscing</li>
-						<li>Elit sed do eiusmod</li>
-					</ul>
-				</Card>
-
-				<Card bordered>
-					<h3>Community Fridges & Pantries</h3>
-					<p>
-						Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-						laudantium.
-					</p>
-					<ul>
-						<li>Totam rem aperiam eaque</li>
-						<li>Ipsa quae ab illo</li>
-						<li>Inventore veritatis et quasi</li>
-					</ul>
-				</Card>
+			<div class="section-header">
+				<h2>{content.organizations.title}</h2>
+				<div class="stats">
+					<span class="count">{content.organizations.cards.length}</span>
+					<span class="count-label">NETWORKS</span>
+				</div>
+			</div>
+			<div class="card-grid">
+				{#each content.organizations.cards as org}
+					<div class="info-card">
+						<div class="card-header">
+							<h3>{org.title}</h3>
+						</div>
+						<div class="card-body">
+							<p>{org.description}</p>
+							<ul class="item-list">
+								{#each org.items as item}
+									<li>{item}</li>
+								{/each}
+							</ul>
+						</div>
+					</div>
+				{/each}
 			</div>
 		</section>
 
 		<section class="history">
-			<h2>HISTORY & PRACTICE</h2>
+			<div class="section-header">
+				<h2>{content.history.title}</h2>
+			</div>
 			<div class="history-content">
-				<Card>
-					<h3>The Black Panther Party's Free Breakfast Program</h3>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. The Black Panther Party's Free
-						Breakfast for Children Program began in January 1969 at St. Augustine's Church in
-						Oakland. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					</p>
-					<p>
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-						commodo consequat. The program eventually spread to feed tens of thousands of children
-						daily in 45 programs across the country.
-					</p>
-				</Card>
-
-				<Card>
-					<h3>Principles of Mutual Aid</h3>
-					<p>
-						Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-						nulla pariatur. Mutual aid is about:
-					</p>
-					<ul class="principles">
-						<li><strong>SOLIDARITY:</strong> Lorem ipsum dolor sit amet</li>
-						<li><strong>DIRECT ACTION:</strong> Consectetur adipiscing elit</li>
-						<li><strong>AUTONOMY:</strong> Sed do eiusmod tempor incididunt</li>
-						<li><strong>COMMUNITY POWER:</strong> Ut labore et dolore magna aliqua</li>
-					</ul>
-				</Card>
-
-				<Card>
-					<h3>Modern Mutual Aid Movement</h3>
-					<p>
-						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-						mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					</p>
-					<p>
-						Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-						laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.
-					</p>
-				</Card>
+				{#each content.history.sections as section}
+					<div class="info-card large">
+						<div class="card-header">
+							<h3>{section.title}</h3>
+						</div>
+						<div class="card-body">
+							{#each section.content as paragraph}
+								<p>{paragraph}</p>
+							{/each}
+							{#if section.principles}
+								<ul class="principles-list">
+									{#each section.principles as principle}
+										<li>
+											<strong>{principle.name}:</strong>
+											{principle.description}
+										</li>
+									{/each}
+								</ul>
+							{/if}
+						</div>
+					</div>
+				{/each}
 			</div>
 		</section>
 
 		<section class="help">
-			<h2>GET HELP</h2>
-			<div class="help-grid">
-				<Card bordered>
-					<h3>FOOD ASSISTANCE</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit:</p>
-					<ul>
-						<li>Lorem ipsum dolor sit amet</li>
-						<li>Consectetur adipiscing elit sed</li>
-						<li>Do eiusmod tempor incididunt</li>
-					</ul>
-					<p class="contact">HOTLINE: Lorem ipsum</p>
-				</Card>
-
-				<Card bordered>
-					<h3>HOUSING SUPPORT</h3>
-					<p>Ut enim ad minim veniam, quis nostrud exercitation:</p>
-					<ul>
-						<li>Ullamco laboris nisi ut</li>
-						<li>Aliquip ex ea commodo</li>
-						<li>Consequat duis aute irure</li>
-					</ul>
-					<p class="contact">CONTACT: Lorem ipsum</p>
-				</Card>
-
-				<Card bordered>
-					<h3>HEALTHCARE ACCESS</h3>
-					<p>Duis aute irure dolor in reprehenderit in voluptate:</p>
-					<ul>
-						<li>Velit esse cillum dolore</li>
-						<li>Eu fugiat nulla pariatur</li>
-						<li>Excepteur sint occaecat</li>
-					</ul>
-					<p class="contact">RESOURCES: Lorem ipsum</p>
-				</Card>
-
-				<Card bordered>
-					<h3>LEGAL AID</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus error:</p>
-					<ul>
-						<li>Sit voluptatem accusantium</li>
-						<li>Doloremque laudantium totam</li>
-						<li>Rem aperiam eaque ipsa</li>
-					</ul>
-					<p class="contact">SUPPORT: Lorem ipsum</p>
-				</Card>
+			<div class="section-header">
+				<h2>{content.help.title}</h2>
+				<div class="stats">
+					<span class="count">{content.help.cards.length}</span>
+					<span class="count-label">RESOURCES</span>
+				</div>
+			</div>
+			<div class="card-grid">
+				{#each content.help.cards as helpCard}
+					<div class="info-card">
+						<div class="card-header">
+							<h3>{helpCard.title}</h3>
+						</div>
+						<div class="card-body">
+							<p>{helpCard.description}</p>
+							<ul class="item-list">
+								{#each helpCard.items as item}
+									<li>{item}</li>
+								{/each}
+							</ul>
+							<div class="contact-info">
+								{helpCard.contact}
+							</div>
+						</div>
+					</div>
+				{/each}
 			</div>
 		</section>
 
-		<section class="quote">
-			<blockquote>
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Survival pending revolution."
-				<cite>— Lorem Ipsum</cite>
-			</blockquote>
+		<section class="quote-section">
+			<div class="quote-card">
+				<blockquote>
+					"{content.quote.text}"
+					<cite>— {content.quote.author}</cite>
+				</blockquote>
+			</div>
 		</section>
 	</div>
 </div>
 
 <style>
-	.about-container {
-		max-width: 1200px;
-		margin: 0 auto;
-		background: white;
-		min-height: calc(100vh - 80px);
+	.about-page {
+		display: flex;
+		flex-direction: column;
+		min-height: calc(100vh - 60px);
+		min-height: calc(100dvh - 60px);
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+		position: relative;
 	}
 
 	.page-header {
-		background: #000000;
+		background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
 		color: white;
-		padding: 3rem 2rem;
-		text-align: center;
-		border-bottom: 4px solid #dc143c;
+		padding: 2rem 1rem;
+		border-bottom: 1px solid rgba(220, 20, 60, 0.3);
+		position: relative;
+		overflow: hidden;
 	}
 
-	.page-header h1 {
+	.page-header::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: radial-gradient(circle at 20% 50%, rgba(220, 20, 60, 0.1) 0%, transparent 50%);
+		pointer-events: none;
+	}
+
+	.header-content {
+		position: relative;
+		z-index: 1;
+		text-align: center;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.header-content h1 {
 		margin: 0;
-		font-size: 3rem;
-		font-weight: 900;
-		letter-spacing: 2px;
+		font-size: 2.5rem;
+		font-weight: 800;
+		letter-spacing: 0.5px;
+		color: white;
+		background: linear-gradient(135deg, #ffffff 0%, #dc143c 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1.1;
+	}
+
+	@supports not (-webkit-background-clip: text) {
+		.header-content h1 {
+			color: white !important;
+			background: none !important;
+			-webkit-text-fill-color: white !important;
+		}
 	}
 
 	.subtitle {
 		margin: 0.5rem 0 0 0;
-		font-size: 1rem;
-		letter-spacing: 3px;
-		color: #dc143c;
-		font-weight: 700;
+		font-size: 0.875rem;
+		letter-spacing: 1.5px;
+		color: rgba(220, 20, 60, 0.8);
+		font-weight: 600;
+		text-transform: uppercase;
 	}
 
 	.content {
-		padding: 2rem;
+		flex: 1;
+		padding: 2rem 1rem;
+		max-width: 1200px;
+		margin: 0 auto;
+		width: 100%;
 	}
 
 	section {
 		margin-bottom: 4rem;
 	}
 
-	h2 {
-		font-size: 2rem;
-		font-weight: 900;
-		margin: 0 0 2rem 0;
-		padding-bottom: 0.5rem;
-		border-bottom: 4px solid #000000;
-		letter-spacing: 1px;
-	}
-
-	h3 {
-		font-size: 1.125rem;
-		font-weight: 900;
-		text-transform: uppercase;
-		margin: 0 0 1rem 0;
-		letter-spacing: 0.5px;
-	}
-
-	p {
-		line-height: 1.7;
-		margin: 0 0 1rem 0;
-		color: #333;
-	}
-
-	ul {
-		list-style: none;
-		padding: 0;
-		margin: 1rem 0;
-	}
-
-	li {
-		padding: 0.25rem 0;
-		padding-left: 1.5rem;
+	.section-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 2rem;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid rgba(220, 20, 60, 0.3);
 		position: relative;
 	}
 
-	li:before {
-		content: '▶';
+	.section-header::after {
+		content: '';
 		position: absolute;
+		bottom: 0;
 		left: 0;
-		color: #dc143c;
-		font-size: 0.75rem;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent 0%, #dc143c 50%, transparent 100%);
 	}
 
-	.org-grid,
-	.help-grid {
+	.section-header h2 {
+		margin: 0;
+		font-size: 1.5rem;
+		color: white;
+		font-weight: 700;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+	}
+
+	.stats {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: rgba(220, 20, 60, 0.1);
+		padding: 0.5rem 0.75rem;
+		border-radius: 6px;
+		border: 1px solid rgba(220, 20, 60, 0.2);
+	}
+
+	.count {
+		color: #dc143c;
+		font-size: 1.125rem;
+		font-weight: 800;
+		min-width: 1.5rem;
+		text-align: center;
+		text-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+	}
+
+	.count-label {
+		font-size: 0.625rem;
+		font-weight: 600;
+		letter-spacing: 1px;
+		color: rgba(255, 255, 255, 0.6);
+		text-transform: uppercase;
+	}
+
+	.card-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 1.5rem;
 	}
 
@@ -269,77 +268,247 @@
 		gap: 1.5rem;
 	}
 
-	.principles li {
+	.info-card {
+		background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(0, 0, 0, 0.8) 100%);
+		border: 1px solid rgba(220, 20, 60, 0.2);
+		border-radius: 8px;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.info-card.large {
+		grid-column: 1 / -1;
+	}
+
+	.info-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, rgba(220, 20, 60, 0.05) 0%, transparent 50%);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		pointer-events: none;
+	}
+
+	.info-card:hover {
+		transform: translateY(-2px);
+		border-color: rgba(220, 20, 60, 0.4);
+		box-shadow: 0 8px 25px rgba(220, 20, 60, 0.15);
+	}
+
+	.info-card:hover::before {
+		opacity: 1;
+	}
+
+	.card-header {
+		background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+		color: white;
+		padding: 1rem;
+		border-bottom: 1px solid rgba(220, 20, 60, 0.2);
+		position: relative;
+	}
+
+	.card-header::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent 0%, #dc143c 50%, transparent 100%);
+	}
+
+	.card-header h3 {
+		margin: 0;
+		font-size: 1rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.25px;
+		color: white;
+	}
+
+	.card-body {
+		padding: 1.5rem;
+		color: white;
+	}
+
+	.card-body p {
+		margin: 0 0 1rem 0;
+		color: rgba(255, 255, 255, 0.9);
+		line-height: 1.6;
+		font-size: 0.875rem;
+	}
+
+	.item-list {
+		list-style: none;
+		padding: 0;
+		margin: 1rem 0;
+	}
+
+	.item-list li {
 		padding: 0.5rem 0;
 		padding-left: 1.5rem;
+		position: relative;
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 0.875rem;
+		line-height: 1.4;
 	}
 
-	.principles strong {
+	.item-list li::before {
+		content: '▶';
+		position: absolute;
+		left: 0;
 		color: #dc143c;
+		font-size: 0.75rem;
+		top: 0.5rem;
 	}
 
-	.contact {
-		margin-top: 1rem;
-		padding-top: 1rem;
-		border-top: 2px solid #f5f5f5;
+	.principles-list {
+		list-style: none;
+		padding: 0;
+		margin: 1.5rem 0 0 0;
+		background: rgba(26, 26, 26, 0.6);
+		border-radius: 6px;
+		padding: 1rem;
+		border: 1px solid rgba(220, 20, 60, 0.1);
+	}
+
+	.principles-list li {
+		padding: 0.75rem 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 0.875rem;
+		line-height: 1.5;
+	}
+
+	.principles-list li:last-child {
+		border-bottom: none;
+	}
+
+	.principles-list strong {
+		color: #dc143c;
 		font-weight: 700;
-		color: #000000;
+		letter-spacing: 0.25px;
 	}
 
-	.quote {
-		background: #000000;
-		color: white;
+	.contact-info {
+		margin-top: 1.5rem;
+		padding-top: 1rem;
+		border-top: 1px solid rgba(220, 20, 60, 0.2);
+		font-weight: 600;
+		color: #dc143c;
+		font-size: 0.875rem;
+		letter-spacing: 0.25px;
+	}
+
+	.quote-section {
+		margin-top: 4rem;
+	}
+
+	.quote-card {
+		background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+		border: 1px solid rgba(220, 20, 60, 0.3);
+		border-radius: 8px;
 		padding: 3rem 2rem;
-		margin: 4rem -2rem -2rem -2rem;
 		text-align: center;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.quote-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: radial-gradient(circle at 50% 50%, rgba(220, 20, 60, 0.1) 0%, transparent 70%);
+		pointer-events: none;
 	}
 
 	blockquote {
 		margin: 0;
-		font-size: 1.5rem;
-		font-weight: 700;
-		letter-spacing: 0.5px;
-		line-height: 1.5;
+		font-size: 1.25rem;
+		font-weight: 600;
+		letter-spacing: 0.25px;
+		line-height: 1.6;
+		color: white;
+		position: relative;
+		z-index: 1;
 	}
 
 	cite {
 		display: block;
-		margin-top: 1rem;
-		font-size: 1rem;
+		margin-top: 1.5rem;
+		font-size: 0.875rem;
 		font-style: normal;
 		color: #dc143c;
-		letter-spacing: 1px;
+		letter-spacing: 0.5px;
+		font-weight: 600;
 	}
 
-	@media (max-width: 767px) {
+	@media (min-width: 768px) {
 		.page-header {
-			padding: 2rem 1.5rem;
+			padding: 3rem 2rem;
 		}
 
-		.page-header h1 {
-			font-size: 2rem;
+		.header-content h1 {
+			font-size: 3rem;
 		}
 
 		.subtitle {
-			font-size: 0.875rem;
-			letter-spacing: 2px;
+			font-size: 1rem;
 		}
 
 		.content {
-			padding: 1.5rem;
+			padding: 3rem 2rem;
 		}
 
-		h2 {
-			font-size: 1.5rem;
+		.section-header h2 {
+			font-size: 1.75rem;
 		}
 
-		.quote {
-			margin: 3rem -1.5rem -1.5rem -1.5rem;
-			padding: 2rem 1.5rem;
+		.card-body p {
+			font-size: 0.9375rem;
+		}
+
+		.item-list li {
+			font-size: 0.9375rem;
 		}
 
 		blockquote {
-			font-size: 1.25rem;
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.about-page {
+			min-height: calc(100vh - 70px);
+			min-height: calc(100dvh - 70px);
+		}
+
+		.header-content h1 {
+			font-size: 3.5rem;
+		}
+
+		.section-header h2 {
+			font-size: 2rem;
+		}
+
+		.card-grid {
+			grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+			gap: 2rem;
+		}
+
+		.info-card:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 12px 35px rgba(220, 20, 60, 0.2);
 		}
 	}
 </style>

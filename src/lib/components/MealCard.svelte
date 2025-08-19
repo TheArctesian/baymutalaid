@@ -1,24 +1,34 @@
 <script lang="ts">
-	interface Meal {
-		time: string;
-		event: string;
-		provider: string;
-		location: {
-			address: string;
-			directions: string;
-		};
-		isPast?: boolean;
-	}
+	import { mapStore } from '$lib/stores/mapStore';
+	import type { MealEvent } from '$lib/utils/mealTransformer';
 
 	interface Props {
-		meal: Meal;
+		meal: MealEvent;
 		index: number;
 	}
 
 	let { meal, index }: Props = $props();
+
+	function handleClick() {
+		mapStore.focusOnEvent(meal.id, meal);
+	}
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault();
+			handleClick();
+		}
+	}
 </script>
 
-<article class="meal-card" class:past={meal.isPast}>
+<div
+	class="meal-card"
+	class:past={meal.isPast}
+	onclick={handleClick}
+	onkeydown={handleKeydown}
+	role="button"
+	tabindex="0"
+>
 	<div class="meal-header">
 		<span class="meal-time">{meal.time}</span>
 		<span class="meal-number">#{index + 1}</span>
@@ -39,7 +49,7 @@
 			{/if}
 		</div>
 	</div>
-</article>
+</div>
 
 <style>
 	.meal-card {
@@ -52,6 +62,7 @@
 		-webkit-backdrop-filter: blur(10px);
 		overflow: hidden;
 		position: relative;
+		cursor: pointer;
 	}
 
 	.meal-card::before {

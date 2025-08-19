@@ -1,0 +1,147 @@
+{
+  "header": {
+    "title": "MUTUAL AID",
+    "subtitle": "SOLIDARITY NOT CHARITY"
+  },
+  "organizations": {
+    "title": "BAY AREA ORGANIZATIONS",
+    "cards": [
+      {
+        "title": "Oakland Community Organizations",
+        "description": "Community-led organizations working to provide direct support and resources to Oakland residents through mutual aid principles.",
+        "items": [
+          "East Bay Mutual Aid",
+          "Oakland Community Land Trust",
+          "Anti Police-Terror Project",
+          "Liberate Meditation"
+        ]
+      },
+      {
+        "title": "Berkeley Mutual Aid Networks",
+        "description": "Grassroots networks connecting Berkeley community members to share resources, support, and care for one another.",
+        "items": [
+          "Berkeley Mutual Aid Network",
+          "People's Park Defenders",
+          "Berkeley Free Clinic",
+          "Telegraph Neighborhood Fridge"
+        ]
+      },
+      {
+        "title": "East Bay Food Programs",
+        "description": "Programs dedicated to food justice and ensuring everyone in the East Bay has access to nourishing meals.",
+        "items": [
+          "Food Not Bombs East Bay",
+          "Town Fridges Network",
+          "Oakland Food Policy Council",
+          "Revolution Foods"
+        ]
+      },
+      {
+        "title": "Community Fridges & Pantries",
+        "description": "Neighborhood-based food access points where community members can take what they need and give what they can.",
+        "items": [
+          "Free Little Pantries",
+          "Community Fridges Oakland",
+          "Blessing Box Network",
+          "Neighborhood Pantry Project"
+        ]
+      }
+    ]
+  },
+  "history": {
+    "title": "HISTORY & PRACTICE",
+    "sections": [
+      {
+        "title": "The Black Panther Party's Free Breakfast Program",
+        "content": [
+          "The Black Panther Party's Free Breakfast for Children Program began in January 1969 at St. Augustine's Church in Oakland. This revolutionary program fed thousands of children daily before school, addressing food insecurity while building community power.",
+          "The program eventually spread to feed tens of thousands of children daily in 45 programs across the country. It demonstrated how communities could directly meet their own needs while challenging systemic inequalities."
+        ]
+      },
+      {
+        "title": "Principles of Mutual Aid",
+        "content": [
+          "Mutual aid is rooted in the belief that we all have something to contribute and we all have something to learn. It's about building community power through direct action and solidarity."
+        ],
+        "principles": [
+          {
+            "name": "SOLIDARITY",
+            "description": "Standing together in shared struggle, recognizing our interconnection"
+          },
+          {
+            "name": "DIRECT ACTION",
+            "description": "Taking immediate action to meet community needs without waiting for permission"
+          },
+          {
+            "name": "AUTONOMY",
+            "description": "Community self-determination and decision-making power"
+          },
+          {
+            "name": "COMMUNITY POWER",
+            "description": "Building collective strength to create lasting systemic change"
+          }
+        ]
+      },
+      {
+        "title": "Modern Mutual Aid Movement",
+        "content": [
+          "Today's mutual aid movement builds on centuries of community care practices, particularly those developed by marginalized communities who have been excluded from traditional support systems.",
+          "From disaster response to ongoing community support, mutual aid networks demonstrate that we can create the world we want to live in through direct action and collective care."
+        ]
+      }
+    ]
+  },
+  "help": {
+    "title": "GET HELP",
+    "cards": [
+      {
+        "title": "FOOD ASSISTANCE",
+        "description": "Access to free meals, groceries, and food resources throughout the Bay Area:",
+        "items": [
+          "Daily meal programs (see our map)",
+          "Community fridges and pantries",
+          "Emergency food assistance",
+          "Cultural food programs"
+        ],
+        "contact": "HOTLINE: 211 (dial 2-1-1)"
+      },
+      {
+        "title": "HOUSING SUPPORT",
+        "description": "Resources for housing security, tenant rights, and homelessness support:",
+        "items": [
+          "Emergency shelter programs",
+          "Tenant rights counseling",
+          "Eviction prevention assistance",
+          "Housing navigation services"
+        ],
+        "contact": "CONTACT: Bay Area Legal Aid (1-800-551-5554)"
+      },
+      {
+        "title": "HEALTHCARE ACCESS",
+        "description": "Community health resources and healthcare navigation:",
+        "items": [
+          "Community health clinics",
+          "Mental health support groups",
+          "Harm reduction services",
+          "Healthcare enrollment assistance"
+        ],
+        "contact": "RESOURCES: Alameda County Health (510-267-8000)"
+      },
+      {
+        "title": "LEGAL AID",
+        "description": "Know your rights and access legal support:",
+        "items": [
+          "Immigration legal services",
+          "Criminal justice support",
+          "Workers' rights advocacy",
+          "Family law assistance"
+        ],
+        "contact": "SUPPORT: East Bay Community Law Center (510-548-4040)"
+      }
+    ]
+  },
+  "quote": {
+    "text": "Mutual aid is not charity. Charity is hierarchical, often humiliating, and comes with strings attached. Mutual aid is based in love and solidarity.",
+    "author": "Dean Spade"
+  }
+}
